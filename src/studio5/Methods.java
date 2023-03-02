@@ -14,7 +14,7 @@ public class Methods {
 	 * @return the Euclidean distance between (x1,y1) and (x2,y2)
 	 */
 	public static double distanceBetween(double x1, double y1, double x2, double y2) {
-		double distance = 0;
+		double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 		// FIXME: Hint use Math methods (e.g. Math.sqrt) to compute the distance
 		
 		return distance;
@@ -36,15 +36,20 @@ public class Methods {
 		// suggested rgb values: 0, 109, 219
 
 		
+		StdDraw.setPenColor(0, 109, 219);
+		StdDraw.filledCircle(x, y, radius*3.0/4.0);		
 
 		// Red ring with 1.0/2.0 the radius
 		// suggested rgb values: 146, 0, 0
 
-		
+		StdDraw.setPenColor(146, 0 ,0);
+		StdDraw.filledCircle(x, y, radius*1.0/2);
 
 		// Yellow ring with 1.0/4.0 the radius
 		// suggested rgb values: 255, 255, 109
 
+		StdDraw.setPenColor(255, 255, 109);
+		StdDraw.filledCircle(x, y, radius*1.0/4);
 		
 	}
 
@@ -62,6 +67,42 @@ public class Methods {
 	public static String substituteAll(String source, char target, String replacement) {
 		String result = "";
 		// TODO: Finish this method
+		
+		char [] charArray = source.toCharArray();
+		char [] charArray2 = replacement.toCharArray();
+		int targetCount = 0;
+		for (int i=0; i<source.length(); i++) 
+		{
+			if (charArray [i] == target)
+			{
+				targetCount++;
+			}
+		}
+		char [] charArray3 = new char [source.length() + targetCount * replacement.length() - 1];
+		int k = 0;
+		for (int i=0;i<charArray.length ;i++)
+		{
+			if (charArray [i] != target)
+			{
+				charArray3 [k] = charArray [i];
+				k++;
+			}
+			else
+			{
+				for (int j=0; j< replacement.length(); j++)
+				{
+				charArray3 [k] = charArray2 [j];
+				k++;
+				}
+			}
+
+		}
+		for (int i = 0 ; i< charArray3.length; i++)
+		{
+			result = result + charArray3[i];
+		}
+		
+		
 		
 		return result;
 	}
